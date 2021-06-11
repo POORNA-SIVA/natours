@@ -2,9 +2,7 @@ import axios from 'axios';
 import '@babel/polyfill';
 import { showAlert } from './alerts';
 
-export const resetPassword = async (tokenurl, password, passwordConfirm) => {
-  const tokenArray = tokenurl.split('/');
-  const token = tokenArray[tokenArray.length - 1];
+export const resetPassword = async (token, password, passwordConfirm) => {
   try {
     const res = await axios({
       method: 'PATCH',

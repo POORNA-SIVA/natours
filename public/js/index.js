@@ -53,13 +53,10 @@ if (forgotPasswordForm)
 if (resetPasswordForm)
   resetPasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    document.getElementById('resetbtnSubmit').textContent =
-      'Resetting Password...';
-    const token = document.getElementById('name').value;
+    const token = document.getElementById('get-token').dataset.resetToken;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password-confirm').value;
     resetPassword(token, password, passwordConfirm);
-    document.getElementById('resetbtnSubmit').textContent = 'Submit';
   });
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
 
