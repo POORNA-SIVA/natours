@@ -49,7 +49,7 @@ exports.getLoginForm = (req, res) => {
   });
 };
 exports.getSignUpForm = (req, res) => {
-  res.status(200).render('SignUp', {
+  res.status(200).render('signUp', {
     title: 'Create your Account',
   });
 };
