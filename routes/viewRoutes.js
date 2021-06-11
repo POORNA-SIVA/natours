@@ -10,9 +10,9 @@ router.get('/', authController.isLoggedIn, viewsController.getOverview);
 
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
-router.get('/signup', viewsController.getSignUpForm);
-router.get('/forgotpassword', viewsController.getForgotPasswordForm);
-router.get('/resetPassword/:resetToken', viewsController.getResetPasswordForm);
+router.get('/signup',authController.isLoggedIn, viewsController.getSignUpForm);
+router.get('/forgotpassword',authController.isLoggedIn, viewsController.getForgotPasswordForm);
+router.get('/resetPassword/:resetToken',authController.isLoggedIn, viewsController.getResetPasswordForm);
 router.get('/me', authController.protect, viewsController.getAccount);
 
 router.get('/my-tours', authController.protect, viewsController.getMyTours);
