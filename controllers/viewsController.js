@@ -2,6 +2,7 @@ const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
+const APIfeatures = require('./../utils/apiFeatures');
 const AppError = require('../utils/appError');
 
 exports.alerts = (req, res, next) => {
@@ -14,7 +15,16 @@ exports.alerts = (req, res, next) => {
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1) Get tour data from collection
-  const tours = await Tour.find();
+  let filter = {};
+  if (req.params.tourId) filter = { tour: req.params.tourId };
+
+  // execute the query
+  const features = new APIfeatures(Tour.find(filter), req.query)
+    .filter()
+    .limit()
+    .sort()
+    .paginate();
+  const tours = await features.query;
 
   // 2) Build template
   // 3) Render that template using tour data from 1)
